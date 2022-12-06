@@ -33,7 +33,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
         router.push("/get-started");
         console.log(err);
       }
-    } else if (didTryAutoLogin && !userAuthorization) {
+    } else if (!userAuthorization) {
       router.push("/get-started");
     }
   }, [dispatch, didTryAutoLogin]);

@@ -33,7 +33,11 @@ export function autoLogin(token: string): AppThunk {
       );
       dispatch(setProfile(res.data.user));
     } catch (err: any) {
-      if (err.response?.status === 403) {
+      if (
+        err.response?.status === 403 ||
+        err.response?.status === 401 ||
+        err.response?.data?.message === "invalid token"
+      ) {
         dispatch(logOut());
       } else {
         console.log(err);
