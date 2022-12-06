@@ -72,6 +72,13 @@ export default function GetStarted() {
     }
   }, [router, email]);
 
+  useEffect(() => {
+    // console.log(document.body.scrollHeight);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
+  }, []);
+
   //Functions
   function inputHandler(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
