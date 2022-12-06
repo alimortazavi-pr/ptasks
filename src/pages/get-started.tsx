@@ -72,6 +72,13 @@ export default function GetStarted() {
     }
   }, [router, email]);
 
+  useEffect(() => {
+    // console.log(document.body.scrollHeight);
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
+  }, []);
+
   //Functions
   function inputHandler(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
@@ -86,7 +93,7 @@ export default function GetStarted() {
     }
   }
 
-  function submit(e?: FormEvent<HTMLFormElement>) {
+  async function submit(e?: FormEvent<HTMLFormElement>) {
     e?.preventDefault();
     setErrors({
       paths: [],
@@ -100,7 +107,7 @@ export default function GetStarted() {
       .then(async () => {
         try {
           if (router.query.email && router.query.email == email) {
-            authModalHandler();
+            await authModalHandler();
           } else {
             router.push(`/get-started?email=${email}`);
           }
