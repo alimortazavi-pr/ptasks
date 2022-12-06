@@ -1,7 +1,7 @@
 {
-  "name": "Paradise code",
-  "short_name": "Paradise code",
-  "theme_color": "#AC6DDE",
+  "name": "Paradise tasks",
+  "short_name": "Paradise tasks",
+  "theme_color": "#A78BFA",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "./",

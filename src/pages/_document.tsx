@@ -7,7 +7,7 @@ export default function Document() {
       <Head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>
-        <meta name="theme-color" content="#AC6DDE" />
+        <meta name="theme-color" content="#A78BFA" />
         <meta
           name="description"
           content="Powered by paradise-code created by alimortazavimanesh.ir"
