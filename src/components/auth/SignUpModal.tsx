@@ -27,7 +27,12 @@ import { signUpValidator } from "@/validators/authValidator";
 import { toast } from "react-toastify";
 import { signUp } from "@/store/auth/actions";
 
-export default function SignUpModal({ isOpen, onOpen, onClose }: signUpAndSignInProps) {
+export default function SignUpModal({
+  isOpen,
+  onOpen,
+  onClose,
+  email
+}: signUpAndSignInProps) {
   //Redux
   const dispatch = useAppDispatch();
 
@@ -54,10 +59,10 @@ export default function SignUpModal({ isOpen, onOpen, onClose }: signUpAndSignIn
 
   //Effects
   useEffect(() => {
-    if (router.query.email) {
-      setForm({ ...form, email: router.query.email as string });
+    if (email) {
+      setForm({ ...form, email: email as string });
     }
-  }, [router]);
+  }, [email]);
 
   //Functions
   function inputHandler(e: ChangeEvent<HTMLInputElement>) {

@@ -65,15 +65,6 @@ export default function GetStarted() {
   }, [isAuth]);
 
   useEffect(() => {
-    if (router.query.email && email) {
-      submit();
-    } else if (router.query.email) {
-      setEmail(router.query.email as string);
-    }
-  }, [router, email]);
-
-  useEffect(() => {
-    // console.log(document.body.scrollHeight);
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
@@ -106,11 +97,7 @@ export default function GetStarted() {
       .validate({ email: email }, { abortEarly: false })
       .then(async () => {
         try {
-          if (router.query.email && router.query.email == email) {
-            await authModalHandler();
-          } else {
-            router.push(`/get-started?email=${email}`);
-          }
+          await authModalHandler();
           setIsLoading(false);
         } catch (err: any) {
           toast.error(err.message, {
@@ -190,11 +177,13 @@ export default function GetStarted() {
         isOpen={isOpenSignUp}
         onOpen={onOpenSignUp}
         onClose={onCloseSignUp}
+        email={email}
       />
       <SignInModal
         isOpen={isOpenSignIn}
         onOpen={onOpenSignIn}
         onClose={onCloseSignIn}
+        email={email}
       />
     </div>
   );

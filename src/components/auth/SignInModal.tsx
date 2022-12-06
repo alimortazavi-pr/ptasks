@@ -31,6 +31,7 @@ export default function SignInModal({
   isOpen,
   onOpen,
   onClose,
+  email,
 }: signUpAndSignInProps) {
   //Redux
   const dispatch = useAppDispatch();
@@ -54,10 +55,10 @@ export default function SignInModal({
 
   //Effects
   useEffect(() => {
-    if (router.query.email) {
-      setForm({ ...form, email: router.query.email as string });
+    if (email) {
+      setForm({ ...form, email: email as string });
     }
-  }, [router]);
+  }, [email]);
 
   //Functions
   function inputHandler(e: ChangeEvent<HTMLInputElement>) {
