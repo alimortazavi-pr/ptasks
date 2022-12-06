@@ -93,7 +93,7 @@ export default function GetStarted() {
     }
   }
 
-  function submit(e?: FormEvent<HTMLFormElement>) {
+  async function submit(e?: FormEvent<HTMLFormElement>) {
     e?.preventDefault();
     setErrors({
       paths: [],
@@ -107,7 +107,7 @@ export default function GetStarted() {
       .then(async () => {
         try {
           if (router.query.email && router.query.email == email) {
-            authModalHandler();
+            await authModalHandler();
           } else {
             router.push(`/get-started?email=${email}`);
           }
