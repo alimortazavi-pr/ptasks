@@ -27,7 +27,7 @@ import Select from "react-select";
 import { toast } from "react-toastify";
 import convertAPToEnglish from "ap-to-english";
 import convertToPersian from "num-to-persian";
-import moment from "jalali-moment";
+import moment, { months } from "jalali-moment";
 
 //Validators
 import { createAndEditTask } from "@/validators/taskValidator";
@@ -89,19 +89,31 @@ export default function CreateTask() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    const dateSplit = new Date().toLocaleDateString("fa-IR").split("/");
     let years: { value: string; label: string }[] = [];
-    for (
-      let i = parseInt(
-        convertAPToEnglish(new Date().toLocaleDateString("fa-IR").split("/")[0])
-      );
-      i >= 1300;
-      i--
-    ) {
+    for (let i = parseInt(convertAPToEnglish(dateSplit[0])); i >= 1300; i--) {
       years.push({
         value: convertToPersian(i),
         label: convertToPersian(i),
       });
     }
+    setForm({
+      ...form,
+      year: convertToPersian(dateSplit[0]),
+      month:
+        dateSplit[1].toString().length < 2
+          ? convertAPToEnglish(`0${dateSplit[1]}`)
+          : convertAPToEnglish(dateSplit[1]),
+      day:
+        dateSplit[2].toString().length < 2
+          ? convertToPersian(`0${dateSplit[2]}`)
+          : convertToPersian(dateSplit[2]),
+    });
+    daysCalculator(
+      dateSplit[1].toString().length < 2
+        ? convertAPToEnglish(`0${dateSplit[1]}`)
+        : convertAPToEnglish(dateSplit[1])
+    );
     setYearsOptions(years);
   }, []);
 
@@ -124,7 +136,7 @@ export default function CreateTask() {
     for (let i = 1; i <= daysLength; i++) {
       days.push({
         value: convertToPersian(i),
-        label: convertToPersian(i),
+        label: convertToPersian(i.toString().length < 2 ? `0${i}` : i),
       });
     }
     setDaysOptions(days);
