@@ -11,11 +11,12 @@ import { ITask } from "@/ts/interfaces/task.interface";
 import { useAppDispatch } from "@/store/hooks";
 import { toggleIsDoneTask } from "@/store/task/actions";
 
+//Components
+import DeleteTask from "./DeleteTask";
+
 //Tools
 import convertToPersian from "num-to-persian";
 import { toast } from "react-toastify";
-import { Trash } from "iconsax-react";
-import DeleteTask from "./DeleteTask";
 
 export default function TasksList({ tasks: tasksProps }: tasksListProps) {
   //Redux
