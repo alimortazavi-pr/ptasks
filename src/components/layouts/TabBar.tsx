@@ -31,7 +31,7 @@ export default function TabBar() {
           </Link>
         </li>
         <li>
-          <Link href={"#"}>
+          <Link href={"/profile"}>
             <User size="20" className="text-white" />
           </Link>
         </li>

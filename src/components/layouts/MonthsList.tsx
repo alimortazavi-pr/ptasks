@@ -20,7 +20,15 @@ export default function MonthsList() {
           >
             <span className="leading-none font-semibold">{month.title}</span>
             <span
-              className={`w-12 h-12 ${month.color} rounded-xl flex items-center justify-center relative`}
+              className={`w-12 h-12 ${
+                month.num === "1" || month.num === "2" || month.num === "3"
+                  ? "bg-teal-300"
+                  : month.num === "4" || month.num === "5" || month.num === "6"
+                  ? "bg-orange-400"
+                  : month.num === "7" || month.num === "8" || month.num === "9"
+                  ? "bg-amber-300"
+                  : "bg-cyan-300"
+              } rounded-xl flex items-center justify-center relative`}
             >
               {convertToPersian(month.num)}
             </span>

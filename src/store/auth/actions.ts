@@ -27,7 +27,6 @@ export function autoLogin(token: string): AppThunk {
       });
       dispatch(
         authenticate({
-          user: res.data.user,
           token: token,
         })
       );
@@ -46,11 +45,21 @@ export function autoLogin(token: string): AppThunk {
   };
 }
 
-export function checkEmailExist(email: string): AppThunk {
+export function checkMobileExist(mobile: string): AppThunk {
   return async (dispatch) => {
     try {
-      const res = await api.post("/auth/check-email-exist", { email });
+      const res = await api.post("/auth/check-mobile-exist", { mobile });
       return res.data.isMustRegister;
+    } catch (err: any) {
+      throw new Error(err.response.data.message);
+    }
+  };
+}
+
+export function requestNewCode(mobile: string): AppThunk {
+  return async (dispatch) => {
+    try {
+      const res = await api.post("/auth/request-code", { mobile });
     } catch (err: any) {
       throw new Error(err.response.data.message);
     }
@@ -63,7 +72,6 @@ export function signUp(form: ISignUpForm): AppThunk {
       const res = await api.post("/auth/register", form);
       dispatch(
         authenticate({
-          user: res.data.user,
           token: res.data.token,
         })
       );
@@ -93,28 +101,8 @@ export function signIn(form: ISignInForm): AppThunk {
   };
 }
 
-export function sendMobileToResetPass(mobile: string): AppThunk {
-  return async (dispatch) => {
-    try {
-      await api.post("/auth/password/mobile", { mobile });
-    } catch (err: any) {
-      throw new Error(err.response.data.message);
-    }
-  };
-}
-
-// export function resetPassword(form: FormResetPasswordInterface): AppThunk {
-//   return async (dispatch) => {
-//     try {
-//       await api.post("/auth/password/reset", form);
-//     } catch (err: any) {
-//       throw new Error(err.response.data.message);
-//     }
-//   };
-// }
-
 //Functions
-function saveDataToLocal(token: string, user: object) {
+export function saveDataToLocal(token: string, user: object) {
   Cookies.set(
     "userAuthorization",
     JSON.stringify({

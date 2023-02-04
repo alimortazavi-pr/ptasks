@@ -21,19 +21,17 @@ import { useAppDispatch } from "@/store/hooks";
 
 //Components
 import TheNavigation from "@/components/layouts/TheNavigation";
-import Select from "react-select";
 
 //Tools
 import { toast } from "react-toastify";
 import convertAPToEnglish from "ap-to-english";
-import convertToPersian from "num-to-persian";
-import moment, { months } from "jalali-moment";
+import moment from "jalali-moment";
+import DatePicker from "react-multi-date-picker";
+import persianLocale from "react-date-object/locales/persian_fa";
+import persianCalendar from "react-date-object/calendars/persian";
 
 //Validators
 import { createAndEditTask } from "@/validators/taskValidator";
-
-//Styles
-import CustomReactSelectStyle from "@/assets/styles/CustomReactSelectStyle";
 
 export default function CreateTask() {
   //Redux
@@ -54,28 +52,6 @@ export default function CreateTask() {
     day: "",
     date: "",
   });
-  const [yearsOptions, setYearsOptions] = useState<
-    { value: string; label: string }[]
-  >([]);
-  const [monthsOptions, setMonthsOptions] = useState<
-    { value: string; label: string }[]
-  >([
-    { value: "01", label: "فروردین" },
-    { value: "02", label: "اردیبهشت" },
-    { value: "03", label: "خرداد" },
-    { value: "04", label: "تیر" },
-    { value: "05", label: "مرداد" },
-    { value: "06", label: "شهریور" },
-    { value: "07", label: "مهر" },
-    { value: "08", label: "آبان" },
-    { value: "09", label: "آذر" },
-    { value: "10", label: "دی" },
-    { value: "11", label: "بهمن" },
-    { value: "12", label: "اسفند" },
-  ]);
-  const [daysOptions, setDaysOptions] = useState<
-    { value: string; label: string }[]
-  >([]);
   const [errors, setErrors] = useState<IValidationErrorsCreateAndEditTaskForm>({
     paths: [],
     messages: {
@@ -88,35 +64,6 @@ export default function CreateTask() {
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const dateSplit = new Date().toLocaleDateString("fa-IR").split("/");
-    let years: { value: string; label: string }[] = [];
-    for (let i = parseInt(convertAPToEnglish(dateSplit[0])); i >= 1300; i--) {
-      years.push({
-        value: convertToPersian(i),
-        label: convertToPersian(i),
-      });
-    }
-    setForm({
-      ...form,
-      year: convertToPersian(dateSplit[0]),
-      month:
-        dateSplit[1].toString().length < 2
-          ? convertAPToEnglish(`0${dateSplit[1]}`)
-          : convertAPToEnglish(dateSplit[1]),
-      day:
-        dateSplit[2].toString().length < 2
-          ? convertToPersian(`0${dateSplit[2]}`)
-          : convertToPersian(dateSplit[2]),
-    });
-    daysCalculator(
-      dateSplit[1].toString().length < 2
-        ? convertAPToEnglish(`0${dateSplit[1]}`)
-        : convertAPToEnglish(dateSplit[1])
-    );
-    setYearsOptions(years);
-  }, []);
-
   //Functions
   function inputHandler(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -127,19 +74,17 @@ export default function CreateTask() {
     });
   }
 
-  function daysCalculator(month: string) {
-    let daysLength: number = 31;
-    if (parseInt(month) > 6) {
-      daysLength = 30;
-    }
-    let days: { value: string; label: string }[] = [];
-    for (let i = 1; i <= daysLength; i++) {
-      days.push({
-        value: convertToPersian(i),
-        label: convertToPersian(i.toString().length < 2 ? `0${i}` : i),
-      });
-    }
-    setDaysOptions(days);
+  function setDateFunc(date: any) {
+    const convertDate = moment(parseInt(JSON.stringify(date)))
+      .format("jYYYY/jMM/jDD")
+      .split("/");
+    setForm({
+      ...form,
+      year: convertDate[0],
+      month: convertDate[1],
+      day: convertDate[2],
+      date: JSON.stringify(date),
+    });
   }
 
   async function submit(e: FormEvent) {
@@ -167,19 +112,13 @@ export default function CreateTask() {
       )
       .then(async () => {
         try {
-          const calculatingDate = moment(
-            `${convertAPToEnglish(form.year)}/${convertAPToEnglish(
-              form.month
-            )}/${convertAPToEnglish(form.day)}`,
-            "jYYYY/jMM/jDD"
-          ).format();
           await dispatch(
             createTask({
               ...form,
               year: convertAPToEnglish(form.year),
               month: convertAPToEnglish(form.month),
               day: convertAPToEnglish(form.day),
-              date: calculatingDate,
+              date: convertAPToEnglish(form.date),
             })
           );
           toast.success("تسک باموفقیت ایجاد شد", {
@@ -253,76 +192,22 @@ export default function CreateTask() {
         </FormControl>
         <FormControl
           isInvalid={errors.paths.includes("year")}
-          className="col-span-4"
+          className="col-span-12 lg:col-span-4"
         >
-          <Select
-            options={yearsOptions}
-            onChange={(val) => setForm({ ...form, year: val.value })}
-            placeholder="سال"
-            styles={CustomReactSelectStyle}
-            value={
-              form.year
-                ? {
-                    value: form.year,
-                    label: form.year,
-                  }
-                : ""
-            }
+          <DatePicker
+            locale={persianLocale}
+            calendar={persianCalendar}
+            onChange={setDateFunc}
+            format={"YYYY/MM/DD"}
+            containerClassName="w-full"
+            inputClass="w-full h-[2.5rem] rounded-[0.375rem] border border-[inherit] px-[1rem]"
+            placeholder="تاریخ"
           />
           <FormErrorMessage>
             {errors.paths.includes("year") ? errors.messages.year : ""}
           </FormErrorMessage>
         </FormControl>
-        <FormControl
-          isInvalid={errors.paths.includes("month")}
-          className="col-span-4"
-        >
-          <Select
-            options={monthsOptions}
-            onChange={(val) => {
-              setForm({ ...form, month: val.value });
-              daysCalculator(val.value);
-            }}
-            placeholder="ماه"
-            styles={CustomReactSelectStyle}
-            value={
-              form.month
-                ? {
-                    ...monthsOptions.find(
-                      (month) => month.value === form.month
-                    ),
-                  }
-                : ""
-            }
-          />
-          <FormErrorMessage>
-            {errors.paths.includes("month") ? errors.messages.month : ""}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl
-          isInvalid={errors.paths.includes("day")}
-          className="col-span-4"
-        >
-          <Select
-            isDisabled={!form.month}
-            options={daysOptions}
-            onChange={(val) => setForm({ ...form, day: val.value })}
-            placeholder="روز"
-            styles={CustomReactSelectStyle}
-            value={
-              form.day
-                ? {
-                    value: form.day,
-                    label: form.day,
-                  }
-                : ""
-            }
-          />
-          <FormErrorMessage>
-            {errors.paths.includes("day") ? errors.messages.day : ""}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl variant={"floating"} className="col-span-6">
+        <FormControl variant={"floating"} className="col-span-6 lg:col-span-4">
           <Input
             focusBorderColor="purple.400"
             placeholder=" "
@@ -333,7 +218,7 @@ export default function CreateTask() {
           />
           <FormLabel>از ساعت</FormLabel>
         </FormControl>
-        <FormControl variant={"floating"} className="col-span-6">
+        <FormControl variant={"floating"} className="col-span-6 lg:col-span-4">
           <Input
             focusBorderColor="purple.400"
             placeholder=" "

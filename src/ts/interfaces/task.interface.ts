@@ -12,7 +12,7 @@ export interface ITask {
   year: string;
   month: string;
   day: string;
-  date: Date;
+  date: string;
   deleted: boolean;
 }
 
@@ -26,7 +26,7 @@ export interface ICreateAndEditTaskForm {
   year: string;
   month: string;
   day: string;
-  date: Date | string;
+  date: string;
 }
 
 export interface IValidationErrorsCreateAndEditTaskForm {
