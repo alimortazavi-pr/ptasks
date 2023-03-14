@@ -136,7 +136,7 @@ export default function TheProfile({}: theProfileProps) {
             className="mb-3"
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={form.firstName}
@@ -157,7 +157,7 @@ export default function TheProfile({}: theProfileProps) {
             className=""
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={form.lastName}
@@ -180,7 +180,7 @@ export default function TheProfile({}: theProfileProps) {
             <div className="flex items-center gap-2">
               <div className="flex-1">
                 <Input
-                  focusBorderColor="purple.400"
+                  focusBorderColor="violet.400"
                   placeholder=" "
                   type="text"
                   value={form.mobile}
@@ -202,7 +202,7 @@ export default function TheProfile({}: theProfileProps) {
           </FormControl>
           <div className="flex flex-col-reverse items-center justify-center lg:flex-row">
             <Button
-              colorScheme={"purple"}
+              colorScheme={"violet"}
               variant={"outline"}
               className="w-full"
               type="submit"

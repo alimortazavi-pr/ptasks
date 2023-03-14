@@ -235,7 +235,7 @@ export default function ChangeMobileModal({
               className="mb-4"
             >
               <Input
-                focusBorderColor="purple.400"
+                focusBorderColor="violet.400"
                 placeholder=" "
                 type="text"
                 value={form.mobile}
@@ -265,7 +265,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                         mr={"2"}
@@ -273,7 +273,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                         mr={"2"}
@@ -281,7 +281,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                         mr={"2"}
@@ -289,7 +289,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                         mr={"2"}
@@ -297,7 +297,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                         mr={"2"}
@@ -305,7 +305,7 @@ export default function ChangeMobileModal({
                       <PinInputField
                         className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
                         _focus={{
-                          borderColor: "purple.400",
+                          borderColor: "violet.400",
                           boxShadow: "none",
                         }}
                       />
@@ -348,7 +348,7 @@ export default function ChangeMobileModal({
               <Button
                 isLoading={isLoading}
                 onClick={submit}
-                colorScheme="purple"
+                colorScheme="violet"
               >
                 تغییر شماره موبایل
               </Button>
@@ -356,7 +356,7 @@ export default function ChangeMobileModal({
               <Button
                 isLoading={isLoading}
                 onClick={requestToChangeHandler}
-                colorScheme="purple"
+                colorScheme="violet"
               >
                 درخواست کد تایید
               </Button>

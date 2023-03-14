@@ -197,7 +197,7 @@ export default function SignUpModal({
             className="mb-3"
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={form.firstName}
@@ -217,7 +217,7 @@ export default function SignUpModal({
             className="mb-4"
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={form.lastName}
@@ -237,7 +237,7 @@ export default function SignUpModal({
             className="mb-4"
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={form.mobile}
@@ -265,32 +265,32 @@ export default function SignUpModal({
                 >
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                     mr={"2"}
                   />
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                     mr={"2"}
                   />
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                     mr={"2"}
                   />
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                     mr={"2"}
                   />
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                     mr={"2"}
                   />
                   <PinInputField
                     className="text-gray-800 dark:text-gray-200 dark:border-gray-500"
-                    _focus={{ borderColor: "purple.400", boxShadow: "none" }}
+                    _focus={{ borderColor: "violet.400", boxShadow: "none" }}
                   />
                 </PinInput>
               </div>
@@ -308,7 +308,7 @@ export default function SignUpModal({
                 ) : (
                   <Button
                     isLoading={isLoading}
-                    colorScheme={"purple"}
+                    colorScheme={"violet"}
                     onClick={() => requestCode()}
                   >
                     ارسال مجدد کد
@@ -326,7 +326,7 @@ export default function SignUpModal({
           <Button colorScheme="gray" ml={3} onClick={onClose}>
             بستن
           </Button>
-          <Button isLoading={isLoading} onClick={submit} colorScheme="purple">
+          <Button isLoading={isLoading} onClick={submit} colorScheme="violet">
             ثبت‌ نام
           </Button>
         </ModalFooter>

@@ -4,25 +4,41 @@ import { useRouter } from "next/router";
 
 //Redux
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { didTryAutoLoginSelector, isAuthSelector } from "@/store/auth/selectors";
+import { didTryAutoLoginSelector } from "@/store/auth/selectors";
 import { autoLogin } from "@/store/auth/actions";
+import { darkModeSelector } from "@/store/layout/selectors";
+import { setDarkMode } from "@/store/layout/actions";
 
 //Components
 import TabBar from "./layouts/TabBar";
 
 //Tools
 import Cookies from "js-cookie";
+import { ToastContainer } from "react-toastify";
+
+//Chakra UI
+import { ChakraProvider } from "@chakra-ui/react";
+import { RtlProvider } from "@/components/layouts/RtlProvider";
+import chakraDarkTheme from "@/assets/styles/chakra-ui/chakraDarkTheme";
+import chakraLightTheme from "@/assets/styles/chakra-ui/chakraLightTheme";
+
+//Transition
+import { motion } from "framer-motion";
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   //Redux
   const dispatch = useAppDispatch();
   const didTryAutoLogin = useAppSelector(didTryAutoLoginSelector);
-  const isAuth = useAppSelector(isAuthSelector);
+  const darkMode = useAppSelector(darkModeSelector);
 
   //Next
   const router = useRouter();
 
   //Effect
+  useEffect(() => {
+    checkDarkModeFunc();
+  }, []);
+
   useEffect(() => {
     const userAuthorization = Cookies.get("userAuthorization");
     if (userAuthorization && !didTryAutoLogin) {
@@ -37,17 +53,55 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
       router.push("/get-started");
     }
   }, [dispatch, didTryAutoLogin]);
+
+  //Functions
+  function checkDarkModeFunc() {
+    const darkModeCheck = Cookies.get("dark-mode");
+    if (darkModeCheck === undefined) {
+      Cookies.set("dark-mode", "false");
+      dispatch(setDarkMode(false));
+    } else {
+      if (darkModeCheck == "true") {
+        document.querySelector("html")?.classList.add("dark");
+        dispatch(setDarkMode(true));
+      } else {
+        dispatch(setDarkMode(false));
+      }
+    }
+  }
+
   return (
-    <div>
-      <Head>
-        <title>Paradise Tasks</title>
-      </Head>
-      <div
-        className={`${router.pathname !== "/get-started" ? "pt-16 pb-20" : ""}`}
-      >
-        {children}
-      </div>
-      {router.pathname !== "/get-started" ? <TabBar /> : null}
-    </div>
+    <ChakraProvider theme={darkMode ? chakraDarkTheme : chakraLightTheme}>
+      <RtlProvider>
+        <motion.div
+          key={router.route}
+          initial="initial"
+          animate="animate"
+          variants={{
+            initial: {
+              opacity: 0.5,
+            },
+            animate: {
+              opacity: 1,
+            },
+          }}
+        >
+          <div>
+            <Head>
+              <title>Paradise Tasks</title>
+            </Head>
+            <div
+              className={`${
+                router.pathname !== "/get-started" ? "pt-16 pb-20" : ""
+              }`}
+            >
+              {children}
+            </div>
+            {router.pathname !== "/get-started" ? <TabBar /> : null}
+          </div>
+        </motion.div>
+        <ToastContainer rtl />
+      </RtlProvider>
+    </ChakraProvider>
   );
 }

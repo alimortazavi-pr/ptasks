@@ -72,7 +72,7 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"purple"} size="lg" variant={'outline'}>
+            <Button colorScheme={"violet"} size="lg" variant={'outline'}>
               رفتن به امروز <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>
@@ -85,8 +85,8 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"purple"} size="lg">
-              رفتن به فردا <ArrowLeft size={24} className="mr-1" />
+            <Button colorScheme={"violet"} size="lg">
+              رفتن به روز بعد <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>
         </div>

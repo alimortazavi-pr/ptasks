@@ -4,6 +4,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import authReducer from "@/store/auth";
 import taskReducer from "@/store/task";
 import profileReducer from "@/store/profile";
+import layoutReducer from "@/store/layout";
 
 export function makeStore() {
   return configureStore({
@@ -11,6 +12,7 @@ export function makeStore() {
       auth: authReducer,
       task: taskReducer,
       profile: profileReducer,
+      layout: layoutReducer,
     },
   });
 }

@@ -1,13 +1,29 @@
 import { extendTheme } from "@chakra-ui/react";
 import { Dict } from "@chakra-ui/utils";
+import { menuLightTheme } from "./customMenu";
 
-const extendChakraTheme: Dict = extendTheme({
+const chakraLightTheme: Dict = extendTheme({
   direction: "rtl",
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   },
+  colors: {
+    violet: {
+      50: "#f5f3ff",
+      100: "#ede9fe",
+      200: "#ddd6fe",
+      300: "#c4b5fd",
+      400: "#a78bfa",
+      500: "#8b5cf6",
+      600: "#7c3aed",
+      700: "#6d28d9",
+      800: "#5b21b6",
+      900: "#4c1d95",
+    },
+  },
   components: {
+    Menu: menuLightTheme,
     Form: {
       variants: {
         floating: {
@@ -40,4 +56,4 @@ const extendChakraTheme: Dict = extendTheme({
   },
 });
 
-export default extendChakraTheme;
+export default chakraLightTheme;

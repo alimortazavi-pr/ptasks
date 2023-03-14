@@ -186,7 +186,7 @@ export default function EditTask({ task }: editTaskProps) {
           className="col-span-12"
         >
           <Input
-            focusBorderColor="purple.400"
+            focusBorderColor="violet.400"
             placeholder=" "
             type="text"
             value={form.title}
@@ -218,7 +218,7 @@ export default function EditTask({ task }: editTaskProps) {
         </FormControl>
         <FormControl variant={"floating"} className="col-span-6 lg:col-span-4">
           <Input
-            focusBorderColor="purple.400"
+            focusBorderColor="violet.400"
             placeholder=" "
             type="time"
             value={form.from}
@@ -229,7 +229,7 @@ export default function EditTask({ task }: editTaskProps) {
         </FormControl>
         <FormControl variant={"floating"} className="col-span-6 lg:col-span-4">
           <Input
-            focusBorderColor="purple.400"
+            focusBorderColor="violet.400"
             placeholder=" "
             type="time"
             value={form.to}
@@ -244,7 +244,7 @@ export default function EditTask({ task }: editTaskProps) {
           className="col-span-12"
         >
           <Input
-            focusBorderColor="purple.400"
+            focusBorderColor="violet.400"
             placeholder=" "
             type="number"
             value={form.row}
@@ -258,7 +258,7 @@ export default function EditTask({ task }: editTaskProps) {
         </FormControl>
         <FormControl variant={"floating"} className="col-span-12">
           <Textarea
-            focusBorderColor="purple.400"
+            focusBorderColor="violet.400"
             placeholder=" "
             value={form.description}
             onChange={inputHandler}
@@ -268,7 +268,7 @@ export default function EditTask({ task }: editTaskProps) {
         </FormControl>
         <div className="col-span-12 flex flex-col-reverse items-center justify-center lg:flex-row">
           <Button
-            colorScheme="purple"
+            colorScheme="violet"
             variant={"outline"}
             className="w-full"
             type="submit"

@@ -129,7 +129,7 @@ export default function GetStarted() {
       <div className="h-[65vh] w-full bg-violet-400 flex items-center justify-center">
         <span className="text-3xl font-extralight font-poppins">P TASKS</span>
       </div>
-      <div className="h-[35vh] w-full bg-white rounded-t-xl px-5 flex flex-col">
+      <div className="h-[35vh] w-full bg-white dark:bg-gray-800 rounded-t-xl px-5 flex flex-col">
         <div>
           <div className="pt-6 mb-5">
             <span className="text-black font-bold text-2xl">
@@ -152,7 +152,7 @@ export default function GetStarted() {
             className="mb-3"
           >
             <Input
-              focusBorderColor="purple.400"
+              focusBorderColor="violet.400"
               placeholder=" "
               type="text"
               value={mobile}
@@ -166,7 +166,7 @@ export default function GetStarted() {
           <Button
             isLoading={isLoading}
             type="submit"
-            colorScheme="purple"
+            colorScheme="violet"
             className="w-full"
           >
             ادامه
