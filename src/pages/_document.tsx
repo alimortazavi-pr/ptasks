@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="ar" dir="rtl" data-theme="light" className="light bg-gray-100">
+    <Html lang="ar" dir="rtl" className="bg-violet-400">
       <Head>
         <link
           rel="apple-touch-icon"
@@ -54,25 +54,25 @@ export default function Document() {
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href="assets/icons/android-icon-192x192.png"
+          href="/assets/icons/android-icon-192x192.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="assets/icons/favicon-32x32.png"
+          href="/assets/icons/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="96x96"
-          href="assets/icons/favicon-96x96.png"
+          href="/assets/icons/favicon-96x96.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="assets/icons/favicon-16x16.png"
+          href="/assets/icons/favicon-16x16.png"
         />
 
         <link rel="manifest" href="/manifest.json" />

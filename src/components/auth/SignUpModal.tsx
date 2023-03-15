@@ -189,7 +189,9 @@ export default function SignUpModal({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>ثبت‌ نام</ModalHeader>
+        <ModalHeader>
+          <span className="text-gray-800 dark:text-white">ثبت‌ نام</span>
+        </ModalHeader>
         <ModalBody>
           <FormControl
             isInvalid={errors.paths.includes("firstName")}
@@ -255,7 +257,7 @@ export default function SignUpModal({
             variant={"floating"}
             className="mb-2"
           >
-            <div className="flex items-center justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-center">
               <div className="flex flex-row-reverse items-center">
                 <PinInput
                   otp
@@ -294,9 +296,9 @@ export default function SignUpModal({
                   />
                 </PinInput>
               </div>
-              <div className="mr-2 flex-1">
+              <div className="mt-2 md:mt-0 md:mr-2 w-full md:w-auto flex-1">
                 {counter.status ? (
-                  <div className="p-2 border rounded-md text-center text-gray-800 dark:text-gray-200 dark:border-gray-500">
+                  <div className="w-full md:w-auto p-2 border rounded-md text-center text-gray-800 dark:text-gray-200 dark:border-gray-500">
                     <span>
                       {convertToPersian(
                         oneToTwoNumber(Math.floor(counter.value / 60)) +
@@ -310,6 +312,7 @@ export default function SignUpModal({
                     isLoading={isLoading}
                     colorScheme={"violet"}
                     onClick={() => requestCode()}
+                    className="w-full md:w-auto"
                   >
                     ارسال مجدد کد
                   </Button>

@@ -6,7 +6,7 @@ import YearsList from "@/components/layouts/YearsList";
 export default function TheYear() {
   return (
     <div>
-      <TheNavigation title="سال ها" isEnabledPreviousPage={false} />
+      <TheNavigation title="سال ها" isEnabledPreviousPageIcon={true} />
       <YearsList />
       <MonthsList />
     </div>

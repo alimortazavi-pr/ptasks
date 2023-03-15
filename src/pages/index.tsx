@@ -52,17 +52,17 @@ export default function Index() {
   }, []);
 
   return (
-    <div>
+    <div className="px-2">
       <TheNavigation title="سال ها" isEnabledPreviousPage={false} />
       <YearsList />
-      <div className="w-full h-full flex flex-col items-center justify-center mt-14">
+      <div className="w-full h-full flex flex-col items-center justify-center py-10 border-2 border-gray-800 dark:border-gray-200 rounded-xl">
         <div>
-          <span className="font-semibold text-3xl text-gray-600 mb-5">
+          <span className="font-semibold text-3xl text-gray-600 dark:text-gray-300 mb-5">
             امروز
           </span>
         </div>
         <div className="mb-5">
-          <span className="font-extrabold text-5xl text-gray-800">{today}</span>
+          <span className="font-extrabold text-5xl text-gray-800 dark:text-gray-200">{today}</span>
         </div>
         <div className="mb-2 text-center">
           <Link
@@ -72,7 +72,7 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"violet"} size="lg" variant={'outline'}>
+            <Button colorScheme={"violet"} size="lg" variant={'outline'} w="200px">
               رفتن به امروز <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>
@@ -85,7 +85,7 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"violet"} size="lg">
+            <Button colorScheme={"violet"} size="lg" w="200px">
               رفتن به روز بعد <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>

@@ -20,7 +20,8 @@ import { editTaskProps } from "@/ts/types/task.type";
 
 //Redux
 import { editTask } from "@/store/task/actions";
-import { useAppDispatch } from "@/store/hooks";
+import { darkModeSelector } from "@/store/layout/selectors";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 //Components
 import TheNavigation from "@/components/layouts/TheNavigation";
@@ -40,6 +41,7 @@ import { createAndEditTask } from "@/validators/taskValidator";
 export default function EditTask({ task }: editTaskProps) {
   //Redux
   const dispatch = useAppDispatch();
+  const isDarkMode = useAppSelector(darkModeSelector);
 
   //Next
   const router = useRouter();
@@ -178,7 +180,7 @@ export default function EditTask({ task }: editTaskProps) {
       <TheNavigation title="ویرایش تسک" isEnabledPreviousPage={true} />
       <form
         onSubmit={submit}
-        className="px-3 grid grid-cols-12 gap-x-2 gap-y-5 bg-white mx-2 p-5 rounded-2xl"
+        className="px-3 grid grid-cols-12 gap-x-2 gap-y-5 bg-white dark:bg-gray-800 mx-2 p-5 rounded-2xl"
       >
         <FormControl
           isInvalid={errors.paths.includes("title")}
@@ -208,8 +210,8 @@ export default function EditTask({ task }: editTaskProps) {
             calendar={persianCalendar}
             onChange={setDateFunc}
             format={"YYYY/MM/DD"}
-            containerClassName="w-full"
-            inputClass="w-full h-[2.5rem] rounded-[0.375rem] border border-[inherit] px-[1rem]"
+            containerClassName="w-full outline-none"
+            inputClass="w-full h-[2.5rem] rounded-[0.375rem] border border-[inherit] px-[1rem] dark:bg-transparent dark:text-gray-200 placeholder:dark:text-white outline-none"
             placeholder="تاریخ"
           />
           <FormErrorMessage>
@@ -263,13 +265,14 @@ export default function EditTask({ task }: editTaskProps) {
             value={form.description}
             onChange={inputHandler}
             name="description"
+            color={isDarkMode ? "white" : ""}
           />
           <FormLabel>توضیحات</FormLabel>
         </FormControl>
         <div className="col-span-12 flex flex-col-reverse items-center justify-center lg:flex-row">
           <Button
             colorScheme="violet"
-            variant={"outline"}
+            variant={isDarkMode ? "solid" : "outline"}
             className="w-full"
             type="submit"
             isLoading={isLoading}
@@ -308,6 +311,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       const response = await api.get(`/tasks/${query.taskId}`, {
         headers: {
           Authorization: `Bearer ${transformedData.token}`,
+          "Accept-Encoding": "application/json",
         },
       });
       task = response.data.task;

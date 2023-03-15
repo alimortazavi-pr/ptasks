@@ -48,6 +48,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       const response = await api.get(`/tasks/${query.year}/${query.month}`, {
         headers: {
           Authorization: `Bearer ${transformedData.token}`,
+          "Accept-Encoding": "application/json",
         },
       });
       days = response.data.days;

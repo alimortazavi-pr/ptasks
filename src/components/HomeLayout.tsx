@@ -86,13 +86,13 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
             },
           }}
         >
-          <div>
+          <div className="bg-gray-100 dark:bg-gray-900 min-h-screen">
             <Head>
               <title>Paradise Tasks</title>
             </Head>
             <div
-              className={`${
-                router.pathname !== "/get-started" ? "pt-16 pb-20" : ""
+              className={`bg-gray-100 dark:bg-gray-900 max-w-md mx-auto ${
+                router.pathname !== "/get-started" ? "pt-16 pb-32" : ""
               }`}
             >
               {children}

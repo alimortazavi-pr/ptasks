@@ -20,7 +20,7 @@ export default function TheDay({ tasks }: theTasksProps) {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="">
       <TheNavigation
         title={
           `${convertToPersian(router.query.day as string)}/${
@@ -53,6 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         {
           headers: {
             Authorization: `Bearer ${transformedData.token}`,
+            "Accept-Encoding": "application/json",
           },
         }
       );

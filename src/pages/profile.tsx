@@ -19,6 +19,7 @@ import { theProfileProps } from "@/ts/types/profile.type";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { userSelector } from "@/store/profile/selectors";
 import { editProfile } from "@/store/profile/actions";
+import { darkModeSelector } from "@/store/layout/selectors";
 
 //Components
 import TheNavigation from "@/components/layouts/TheNavigation";
@@ -36,6 +37,7 @@ export default function TheProfile({}: theProfileProps) {
   //Redux
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector);
+  const isDarkMode = useAppSelector(darkModeSelector);
 
   //ChakraUI
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -125,7 +127,7 @@ export default function TheProfile({}: theProfileProps) {
   return (
     <div className="flex flex-col items-center md:mt-5">
       <TheNavigation title="پروفایل" isEnabledPreviousPage />
-      <div className="px-2 md:px-0 w-full max-w-md">
+      <div className="px-2 md:px-0">
         <form
           onSubmit={submit}
           className="px-3 flex flex-col gap-x-2 gap-y-4 bg-white dark:bg-gray-800 p-5 rounded-2xl md:rounded-md"
@@ -203,7 +205,7 @@ export default function TheProfile({}: theProfileProps) {
           <div className="flex flex-col-reverse items-center justify-center lg:flex-row">
             <Button
               colorScheme={"violet"}
-              variant={"outline"}
+              variant={isDarkMode ? "solid" : "outline"}
               className="w-full"
               type="submit"
               isLoading={isLoading || !form.mobile}

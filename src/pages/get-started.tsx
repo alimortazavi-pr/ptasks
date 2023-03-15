@@ -132,12 +132,12 @@ export default function GetStarted() {
       <div className="h-[35vh] w-full bg-white dark:bg-gray-800 rounded-t-xl px-5 flex flex-col">
         <div>
           <div className="pt-6 mb-5">
-            <span className="text-black font-bold text-2xl">
+            <span className="text-gray-800 font-bold text-2xl dark:text-white">
               خیلی خوش آمدی :)
             </span>
           </div>
           <div className="mb-4">
-            <span className="text-black">
+            <span className="text-gray-800 dark:text-white">
               لطفا برای ورود یا ثبت‌نام شماره موبایل خود را وارد کنید.
             </span>
           </div>

@@ -27,6 +27,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
 
   //States
   const [tasks, setTasks] = useState<ITask[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   //Effects
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
 
   //Functions
   async function toggleIsDoneTaskFunc(taskId: string) {
+    setIsLoading(true);
     try {
       await dispatch(toggleIsDoneTask(taskId));
       setTasks([
@@ -42,10 +44,12 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
           task._id === taskId ? { ...task, isDone: !task.isDone } : task
         ),
       ]);
+      setIsLoading(false);
     } catch (err: any) {
       toast.error(err.message, {
         position: toast.POSITION.TOP_CENTER,
       });
+      setIsLoading(false);
     }
   }
 
@@ -54,21 +58,23 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
       {tasks.map((task) => (
         <li key={task._id} className="col-span-12">
           <span
-            className={`rounded-2xl ${
+            className={`rounded-2xl bg-white dark:bg-gray-800 border-2 duration-700 ${
               task.isDone
-                ? "bg-teal-100 border-teal-50 border-2"
-                : "bg-white  border-red-100 border-2"
+                ? "border-teal-100 dark:border-teal-900"
+                : "border-rose-100 dark:border-rose-900"
             } px-4 py-4 flex flex-col`}
           >
             <div className="flex items-center justify-between">
               <Link
                 href={`/${router.query.year}/${router.query.month}/${router.query.day}/${task._id}`}
-                className="flex items-center w-max"
+                className="flex items-center w-max text-gray-800 dark:text-gray-200"
               >
                 <span
                   className={`w-10 h-10 ${
-                    task.isDone ? "bg-teal-500" : "bg-red-500 "
-                  } text-white rounded-xl flex items-center justify-center`}
+                    task.isDone
+                      ? "bg-teal-400 dark:bg-teal-600"
+                      : "bg-rose-400 dark:bg-rose-600"
+                  } rounded-xl flex items-center justify-center duration-700`}
                 >
                   {convertToPersian(
                     task.row.toString().length < 2 ? `0${task.row}` : task.row
@@ -82,19 +88,20 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
                   onChange={() => toggleIsDoneTaskFunc(task._id)}
                   id="is-done"
                   isChecked={task.isDone}
-                  colorScheme="green"
+                  colorScheme="teal"
+                  disabled={isLoading}
                 />
               </div>
             </div>
             {task.from || task.to ? (
               <div className="flex justify-around items-center mt-6">
                 {task.from ? (
-                  <span className="leading-none text-gray-500">
+                  <span className="leading-none text-gray-600 dark:text-gray-400">
                     از ساعت : {convertToPersian(task.from)}
                   </span>
                 ) : null}
                 {task.to ? (
-                  <span className="leading-none text-gray-500">
+                  <span className="leading-none text-gray-600 dark:text-gray-400">
                     تا ساعت : {convertToPersian(task.to)}
                   </span>
                 ) : null}
@@ -104,7 +111,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
             {task.description ? (
               <div>
                 <hr className="my-3 border-gray-100" />
-                <p className="text-gray-500 m-0 leading-none">
+                <p className="text-gray-600 dark:text-gray-400 m-0 leading-none">
                   {task.description}
                 </p>
               </div>

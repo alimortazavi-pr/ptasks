@@ -13,20 +13,25 @@ export default function YearsList() {
   const user = useAppSelector(userSelector);
 
   //Next
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <ul className="flex items-center gap-3 px-3 py-2 overflow-x-auto my-4">
+    <ul className="flex items-center justify-center gap-3 px-3 py-4 overflow-x-auto my-3 border-2 border-gray-800 dark:border-gray-200 rounded-xl">
       {user.years.length !== 0 ? (
         user.years.map((year) => (
           <li key={year}>
-            <Link href={year} className={`border border-slate-400 ${router.query?.year == year ? 'bg-slate-200': ''} text-slate-700  font-semibold px-6 py-1 rounded-lg leading-none cursor-pointer`}>
+            <Link
+              href={year}
+              className={`border border-gray-400 dark:border-gray-300 ${
+                router.query?.year == year ? "bg-gray-200 dark:bg-gray-800" : ""
+              } text-gray-800 dark:text-gray-200  font-semibold px-6 py-1 rounded-lg leading-none cursor-pointer`}
+            >
               {convertToPersian(year)}
             </Link>
           </li>
         ))
       ) : (
-        <li>
+        <li className="text-gray-800 dark:text-gray-200">
           شما هنوز تسکی ایجاد نکردید :)
         </li>
       )}

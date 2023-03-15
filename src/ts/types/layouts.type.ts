@@ -1,5 +1,6 @@
 export type theNavigationProps = {
   title: string;
-  isEnabledPreviousPage? : boolean
+  isEnabledPreviousPageIcon?: boolean;
+  isEnabledPreviousPage?: boolean;
   previousPage?: string;
 };
