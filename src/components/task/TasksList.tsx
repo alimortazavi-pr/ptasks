@@ -80,7 +80,9 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
                     task.row.toString().length < 2 ? `0${task.row}` : task.row
                   )}
                 </span>
-                <span className="font-semibold text-xl mr-2">{task.title}</span>
+                <span className="font-semibold text-xl mr-2 max-w-[120px] md:max-w-[200px] truncate">
+                  {task.title}
+                </span>
               </Link>
               <div className="flex items-center">
                 <DeleteTask task={task} tasks={tasks} setTasks={setTasks} />

@@ -15,8 +15,9 @@ import { useState } from "react";
 import { deleteTaskProps } from "@/ts/types/task.type";
 
 //Redux
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { deleteTask } from "@/store/task/actions";
+import { darkModeSelector } from "@/store/layout/selectors";
 
 //Tools
 import { toast } from "react-toastify";
@@ -25,6 +26,7 @@ import { Trash } from "iconsax-react";
 export default function DeleteTask({ task, tasks, setTasks }: deleteTaskProps) {
   //Redux
   const dispatch = useAppDispatch();
+  const isDarkMode = useAppSelector(darkModeSelector);
 
   //Next
   const router = useRouter();
@@ -57,20 +59,33 @@ export default function DeleteTask({ task, tasks, setTasks }: deleteTaskProps) {
       <PopoverTrigger>
         <Trash size="28" className="ml-4 text-red-500 cursor-pointer" />
       </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverHeader>حذف تسک</PopoverHeader>
+      <PopoverContent
+        bg={isDarkMode ? "#1f2937" : ""}
+        borderColor={isDarkMode ? "#e5e7eb" : ""}
+      >
+        <PopoverArrow bg={isDarkMode ? "#1f2937" : ""} />
+        <PopoverHeader>
+          <span className="text-gray-800 dark:text-gray-200">حذف تسک</span>
+        </PopoverHeader>
         <PopoverBody>
-          <span className="mt-3">آیا مطمئن هستید؟</span>
+          <span className="mt-3 text-gray-800 dark:text-gray-200">
+            آیا مطمئن هستید؟
+          </span>
           <div className="flex items-center justify-center gap-2 my-2">
             <Button
               colorScheme={"green"}
               isLoading={isLoading}
               onClick={destroy}
+              variant={isDarkMode ? "outline" : "solid"}
             >
               بله
             </Button>
-            <Button colorScheme={"red"} isLoading={isLoading} onClick={onClose}>
+            <Button
+              variant={isDarkMode ? "outline" : "solid"}
+              colorScheme={"red"}
+              isLoading={isLoading}
+              onClick={onClose}
+            >
               خیر
             </Button>
           </div>
