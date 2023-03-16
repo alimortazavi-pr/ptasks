@@ -209,8 +209,16 @@ export default function SignInModal({
             variant={"floating"}
             className="mb-2"
           >
-            <div className="flex flex-col md:flex-row items-center justify-center">
-              <div className="flex flex-row-reverse items-center">
+            <div
+              className={`flex ${
+                counter.status ? "" : "flex-col"
+              } md:flex-row items-center justify-center`}
+            >
+              <div
+                className={`flex flex-row-reverse items-center ${
+                  counter.status ? "" : "w-full justify-between"
+                }`}
+              >
                 <PinInput
                   otp
                   onChange={(value) => {
@@ -248,9 +256,17 @@ export default function SignInModal({
                   />
                 </PinInput>
               </div>
-              <div className="mt-2 md:mt-0 md:mr-2 w-full md:w-auto flex-1">
+              <div
+                className={`${
+                  counter.status ? "mr-2" : "mt-2 md:mt-0"
+                } md:mr-2 w-full md:w-auto flex-1`}
+              >
                 {counter.status ? (
-                  <div className="w-full md:w-auto p-2 border rounded-md text-center text-gray-800 dark:text-gray-200 dark:border-gray-500">
+                  <div
+                    className={`${
+                      counter.status ? "" : "w-full md:w-auto"
+                    } p-2 border rounded-md text-center text-gray-800 dark:text-gray-200 dark:border-gray-500`}
+                  >
                     <span>
                       {convertToPersian(
                         oneToTwoNumber(Math.floor(counter.value / 60)) +

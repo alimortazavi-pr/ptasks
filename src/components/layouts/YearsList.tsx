@@ -16,7 +16,7 @@ export default function YearsList() {
   const router = useRouter();
 
   return (
-    <ul className="flex items-center justify-center gap-3 px-3 py-4 overflow-x-auto my-3 border-2 border-gray-800 dark:border-gray-200 rounded-xl">
+    <ul className="flex items-center justify-center gap-3 px-3 py-3 overflow-x-auto my-3 border border-gray-800 dark:border-gray-500 rounded-2xl mx-2">
       {user.years.length !== 0 ? (
         user.years.map((year) => (
           <li key={year}>

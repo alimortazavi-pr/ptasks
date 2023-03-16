@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+//Redux
+import { useAppSelector } from "@/store/hooks";
+import { darkModeSelector } from "@/store/layout/selectors";
+
 //Components
 import TheNavigation from "@/components/layouts/TheNavigation";
 import YearsList from "@/components/layouts/YearsList";
@@ -12,6 +16,9 @@ import convertAPToEnglish from "ap-to-english";
 import { Button } from "@chakra-ui/react";
 
 export default function Index() {
+  //Redux
+  const isDarkMode = useAppSelector(darkModeSelector);
+
   //States
   const [today, setToday] = useState<string>("");
   const [tomorrow, setTomorrow] = useState<string>("");
@@ -52,17 +59,23 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="px-2">
-      <TheNavigation title="سال ها" isEnabledPreviousPage={false} />
+    <div className="">
+      <TheNavigation
+        title="سال ها"
+        isEnabledPreviousPage={false}
+        isEnabledPreviousPageIcon={false}
+      />
       <YearsList />
-      <div className="w-full h-full flex flex-col items-center justify-center py-10 border-2 border-gray-800 dark:border-gray-200 rounded-xl">
+      <div className="w-full h-full flex flex-col items-center justify-center py-10 px-2">
         <div>
           <span className="font-semibold text-3xl text-gray-600 dark:text-gray-300 mb-5">
             امروز
           </span>
         </div>
         <div className="mb-5">
-          <span className="font-extrabold text-5xl text-gray-800 dark:text-gray-200">{today}</span>
+          <span className="font-extrabold text-5xl text-gray-800 dark:text-gray-200">
+            {today}
+          </span>
         </div>
         <div className="mb-2 text-center">
           <Link
@@ -72,7 +85,12 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"violet"} size="lg" variant={'outline'} w="200px">
+            <Button
+              colorScheme={"violet"}
+              size="lg"
+              variant={isDarkMode ? "solid" : "outline"}
+              w="200px"
+            >
               رفتن به امروز <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>
@@ -85,7 +103,12 @@ export default function Index() {
               }`
             )}
           >
-            <Button colorScheme={"violet"} size="lg" w="200px">
+            <Button
+              colorScheme={"violet"}
+              size="lg"
+              w="200px"
+              variant={isDarkMode ? "outline" : "solid"}
+            >
               رفتن به روز بعد <ArrowLeft size={24} className="mr-1" />
             </Button>
           </Link>

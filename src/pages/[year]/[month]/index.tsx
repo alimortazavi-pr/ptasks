@@ -25,7 +25,7 @@ export default function TheMonth({ days }: theMonthProps) {
       <TheNavigation
         title={
           months.find((month) => month.num === router.query.month)?.title ||
-          "ماه ها"
+          "روز ها"
         }
         isEnabledPreviousPage={true}
         previousPage={`/${router.query.year}`}
