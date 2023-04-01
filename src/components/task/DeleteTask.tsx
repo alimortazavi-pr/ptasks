@@ -60,10 +60,10 @@ export default function DeleteTask({ task, tasks, setTasks }: deleteTaskProps) {
         <Trash size="28" className="ml-4 text-red-500 cursor-pointer" />
       </PopoverTrigger>
       <PopoverContent
-        bg={isDarkMode ? "#1f2937" : ""}
-        borderColor={isDarkMode ? "#e5e7eb" : ""}
+        bg={isDarkMode ? "#1f2937" : "#f9fafb"}
+        borderColor={isDarkMode ? "#e5e7eb" : "#e5e7eb"}
       >
-        <PopoverArrow bg={isDarkMode ? "#1f2937" : ""} />
+        <PopoverArrow bg={isDarkMode ? "#1f2937" : "#f9fafb"} />
         <PopoverHeader>
           <span className="text-gray-800 dark:text-gray-200">حذف تسک</span>
         </PopoverHeader>
