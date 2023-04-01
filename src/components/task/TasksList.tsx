@@ -60,7 +60,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
           <span
             className={`rounded-2xl bg-white dark:bg-gray-800 border-2 duration-700 ${
               task.isDone
-                ? "border-teal-100 dark:border-teal-900"
+                ? "border-violet-100 dark:border-violet-900"
                 : "border-rose-100 dark:border-rose-900"
             } px-4 py-4 flex flex-col`}
           >
@@ -72,7 +72,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
                 <span
                   className={`w-10 h-10 ${
                     task.isDone
-                      ? "bg-teal-400 dark:bg-teal-600"
+                      ? "bg-violet-400 dark:bg-violet-600"
                       : "bg-rose-400 dark:bg-rose-600"
                   } rounded-xl flex items-center justify-center duration-700`}
                 >
@@ -90,7 +90,7 @@ export default function TasksList({ tasks: tasksProps }: tasksListProps) {
                   onChange={() => toggleIsDoneTaskFunc(task._id)}
                   id="is-done"
                   isChecked={task.isDone}
-                  colorScheme="teal"
+                  colorScheme="violet"
                   disabled={isLoading}
                 />
               </div>
