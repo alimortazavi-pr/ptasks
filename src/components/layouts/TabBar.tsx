@@ -26,10 +26,10 @@ export default function TabBar() {
   function darkModeToggle() {
     const htmlElement = document.querySelector("html");
     if (darkMode) {
-      Cookies.set("dark-mode", "false");
+      Cookies.set("dark-mode", "false", { expires: 90 });
       htmlElement?.classList.remove("dark");
     } else {
-      Cookies.set("dark-mode", "true");
+      Cookies.set("dark-mode", "true", { expires: 90 });
       htmlElement?.classList.add("dark");
     }
 

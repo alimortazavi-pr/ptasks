@@ -108,6 +108,7 @@ export function saveDataToLocal(token: string, user: object) {
     JSON.stringify({
       token: token,
       user: user,
-    })
+    }),
+    { expires: 90 }
   );
 }
